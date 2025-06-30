@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ruwei Pan's home page">
+    <title>Ruwei Pan's Homepage</title>
+    <link rel="icon" href="assets/img/profile_pic.jpg" type="image/jpg">
+    <link href="./profile.css" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            font-family: Georgia, serif;
+            color: #111;
+            width: 850px;
+        }
+
+        .profile-pic {
+            width: 180px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.04);
+        }
+
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-box {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: inline-block;
+            margin-top: 0.6em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            font-size: 0.95em;
+        }
+
+        .contact-box img {
+            width: 16px;
+            vertical-align: middle;
+            margin-right: 6px;
+            opacity: 0.9;
+        }
+
+        .contact-box a {
+            margin-right: 16px;
+        }
+
+        .emoji {
+            font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, sans-serif;
+            font-size: 1.1em;
+        }
+
+        .publication-entry {
+            display: flex;
+            align-items: flex-start;
+            background: #fdfdfd;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .publication-entry img {
+            width: 200px;
+            height: 100px;
+            border-radius: 8px;
+            margin-right: 16px;
+            object-fit: cover;
+        }
+
+        .pub-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        h1,
+        h2 {
+            color: #263054;
+        }
+
+        h2 {
+            border-bottom: 1px solid #aaa;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="layout-content" style="margin: 25px; max-width: 800px;">
+        <div class="top-section">
+            <div style="max-width: 70%;">
+                <h1>Ruwei Pan</h1>
+                <h3><span class="emoji">🎓</span> Undergraduate Student</h3>
+
+                <p style="margin-bottom: 0.4em;">
+                    <img src="assets/img/school.png" alt="University"
+                        style="width:16px; vertical-align:middle; margin-right:5px;">
+                    <a href="https://www.cqu.edu.cn/" target="_blank">Chongqing University</a>
+                </p>
+                <p style="margin-top: 0;">
+                    <img src="assets/img/location.png" alt="Location"
+                        style="width:16px; vertical-align:middle; margin-right:5px;">
+                    Chongqing, China
+                </p>
+
+                <div class="contact-box">
+                    <img src="assets/img/envelope.png" alt="Email">
+                    <a href="mailto:panruwei666@gmail.com">panruwei666@gmail.com</a>
+
+                    <img src="assets/img/google.png" alt="Google Scholar">
+                    <a href="https://scholar.google.com/citations?user=R7sRfe4AAAAJ&hl=en" target="_blank">Google Scholar</a>
+
+                    <img src="assets/img/github.png" alt="GitHub">
+                    <a href="https://github.com/Wwstarry" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div>
+                <img class="profile-pic" src="assets/img/profile_pic.jpg" alt="Profile Picture">
+            </div>
+        </div>
+
+        <h2>About Me</h2>
+        <p>I am a <b>third-year</b> Undergraduate Student <b>(Ranking 1/122)</b> of Big Data and Software Engineering, Chongqing University, China. I have been very fortunate to begin my research journey under the supervision of <b>Prof. <a href="http://hongyujohn.github.io/" target="_blank">Hongyu Zhang</a></b> in 2023.</p>
+        <p><span class="emoji">📌</span> My research is in the area of software engineering, in particular, <b>code generation</b>. I am deeply interested in how LLMs can reason and generate human-aligned programming logic. Code bridges abstract intentions with machine-executable behavior.</p>
+        <p>I aim to pursue <b>paradigm-shifting research</b> that questions conventions. My long-term goal is to reshape our understanding of how intelligent systems perceive, reason, and interact with the world.</p>
+        <p><em>I am always open for collaborations!</em></p>
+
+        <h2>Education</h2>
+        <ul>
+            <li>[2022–2026] B.Eng. in Software Engineering, <b>School of Big Data & Software Engineering</b>, Chongqing University.</li>
+        </ul>
+
+        <h2>Selected Publications & Manuscripts</h2>
+        <ul class="pub-list">
+            <li>
+                <div class="publication-entry">
+                    <img src="assets/img/codecor.png" alt="CodeCoR">
+                    <div>
+                        <b>🔥 CodeCoR: An LLM-Based Self-Reflective Multi-Agent Framework for Code Generation</b><br>
+                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†, Chang Liu</span><br>
+                        <i style="color: #b70505c0;">Introduces a novel self-reflective multi-agent framework. LLMs collaboratively reason and generate code.</i><br>
+                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2501.07811">Paper</a>]
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="publication-entry">
+                    <img src="assets/img/modular_prompting.png" alt="Modular Prompting">
+                    <div>
+                        <b>🔥 Modularization is Better: Effective Code Generation with Modular Prompting</b><br>
+                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†</span><br>
+                        <i style="color: #b70505c0;">Proposes modular prompting to improve code generation by decomposing tasks into structured modules.</i><br>
+                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2503.12483">Paper</a>]
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>Other Works</h2>
+        <ul>
+            <li><b>AdaCoder:</b> An Adaptive Planning and Multi-Agent Framework for Function-Level Code Generation<br>
+                Yueheng Zhu, Chao Liu†, Xuan He, Xiaoxue Ren, Zhongxin Liu, <u><b>Ruwei Pan</b></u>, Hongyu Zhang.<br>
+                <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2504.04220">Paper</a>]
+            </li>
+            <li><b>AgentDroid:</b> A Multi-Agent Framework for Detecting Fraudulent Android Applications<br>
+                <u><b>Ruwei Pan</b></u>, Hongyu Zhang†, Zeyu Jiang, Ruixiang Hou.<br>
+                <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2503.12163">Paper</a>]
+            </li>
+        </ul>
+
+        <h2>Awards & Competitions</h2>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li><span class="emoji">🎓</span> <b>National Scholarship</b> <span style="color: #777;">(1st out of 122)</span></li>
+            <li><span class="emoji">🏆</span> <b>National First Prize</b>, China Software Cup (Top 0.3%, Aug 2024)</li>
+            <li><span class="emoji">🏆</span> <b>National First Prize</b>, Mathematical Contest in Modeling (Top 0.45%, Nov 2024)</li>
+            <li><span class="emoji">🥈</span> <b>National Second Prize</b>, Software Innovation Contest (15th nationwide, May 2025)</li>
+            <li><span class="emoji">🌟</span> <b>Excellent Project</b>, National Undergraduate Innovation Training (Nov 2024)</li>
+        </ul>
+
+        <h2>Community Contribution</h2>
+        <p>I maintain a curated <b>AI4SE Paper Repository</b> collecting recent high-quality research in software engineering. It aims to help researchers and practitioners stay updated with cutting-edge trends.</p>
+        <p><span class="emoji">🔗</span> <a href="https://github.com/Wwstarry/awesome-codegen" target="_blank">Awesome-SE</a></p>
+    </div>
+</body>
+
+</html>
