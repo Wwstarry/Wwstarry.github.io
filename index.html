@@ -91,11 +91,130 @@
             padding-bottom: 5px;
             margin-top: 40px;
         }
+
+        /* ====== Typing News Bar ====== */
+        .news-section {
+    /* 调小和上一个部分的距离 */
+    margin-top: 1.2rem;
+    /* 几乎不留下面距，避免和 Education 之间太空 */
+    margin-bottom: -1.8rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .news-typing-wrapper {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(79, 70, 229, 0.06);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .news-label {
+            font-weight: 600;
+            margin-right: 0.5rem;
+            color: #4f46e5;
+        }
+
+        #news-typing-text {
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* 光标闪烁效果 */
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.05em;
+            margin-left: 4px;
+            background: #333;
+            animation: blink-cursor 0.9s steps(1) infinite;
+        }
+
+        @keyframes blink-cursor {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .news-typing-wrapper {
+                display: flex;
+                white-space: normal;
+                border-radius: 12px;
+            }
+        }
     </style>
 </head>
 
+<script>
+// ====== Typing News Bar Logic ======
+document.addEventListener('DOMContentLoaded', function () {
+    const typingElement = document.getElementById('news-typing-text');
+    if (!typingElement) return;
+
+    // 这里写你想循环显示的 News 文本
+    const newsMessages = [
+        "AdaCoder accepted to IEEE Transactions on Software Engineering (TSE).",
+        "AgentDroid presented in the ASE 2025.",
+        "Honored as Student of the Year at Chongqing University.",
+    ];
+
+    let msgIndex = 0;
+    let charIndex = 0;
+    let typingSpeed = 55;       // 打字速度 (ms)
+    let messagePause = 1500;    // 一条新闻打完后停顿时间
+    let deleting = false;
+
+    function typeLoop() {
+        const current = newsMessages[msgIndex];
+
+        if (!deleting) {
+            // Typing
+            typingElement.textContent = current.slice(0, charIndex + 1);
+            charIndex++;
+
+            if (charIndex === current.length) {
+                // 完成一条，停顿一下再删
+                setTimeout(() => { deleting = true; }, messagePause);
+            }
+        } else {
+            // Deleting
+            typingElement.textContent = current.slice(0, charIndex - 1);
+            charIndex--;
+
+            if (charIndex === 0) {
+                deleting = false;
+                msgIndex = (msgIndex + 1) % newsMessages.length;
+            }
+        }
+
+        const delay = deleting ? 35 : typingSpeed;
+        setTimeout(typeLoop, delay);
+    }
+
+    typeLoop();
+});
+</script>
+
 <body>
-    
     <div id="layout-content" style="margin: 25px; max-width: 800px;">
         <div class="top-section">
             <div style="max-width: 70%;">
@@ -133,7 +252,17 @@
         <p>I am a <b> fourth-year </b> Undergraduate Student <b>(Ranking 1/122)</b> of Big Data and Software Engineering, Chongqing University, China. I have been very fortunate to begin my research journey under the supervision of <b>Prof. <a href="http://hongyujohn.github.io/" target="_blank">Hongyu Zhang</a></b> in 2023. I will soon begin my Ph.D. studies at <b>Peking University</b>, advised by <b>Prof. <a href="https://scholar.google.com/citations?user=JUnz2VcAAAAJ&hl=en" target="_blank">Lu Zhang</a></b>.</p>
         <p><span class="emoji">📌</span> My research is in the area of software engineering, in particular, <b>code generation</b>. I am deeply interested in how LLMs can reason and generate human-aligned programming logic. Code bridges abstract intentions with machine-executable behavior.</p>
         <p>Rather than solely focusing on incremental improvements or parameter tuning, I aspire to pursue <b>research that advances genuinely new paradigms</b> and challenges prevailing assumptions in both academia and industry. I believe that true scientific progress often requires taking risks, questioning conventions, and exploring directions that may initially seem uncertain or unconventional. My long-term goal is to contribute to work that not only advances performance but also <b>reshapes our fundamental understanding</b> of how intelligent systems perceive, reason, and interact with the world.</p>
-        <p><em>I am always open for collaborations! Please feel free to reach out to me on WeChat: Wwstarryluck.</em></p>
+        <p><em>I am always open for collaborations! Please feel free to reach out to me on <span style="color: #07C160; font-weight: bold;">WeChat: Wwstarryluck</span>.</em></p>
+
+        <!-- ====== News Section: Only Typing Bar ====== -->
+        <section id="news-typing" class="news-section">
+
+            <div class="news-typing-wrapper">
+                <span class="news-label">News:</span>
+                <span id="news-typing-text"></span>
+                <span class="typing-cursor"></span>
+            </div>
+        </section>
 
         <h2>Education</h2>
         <ul>
@@ -180,7 +309,7 @@
         </ul>
 
         <h2>Awards & Competitions</h2>
-        <ul style="list-style-type: none; padding-left: 0;">
+        <ul style="list-style-type: none; padding-left: 0%;">
             <li><span class="emoji">🎓</span> <b>National Scholarship</b> <span style="color: #777;">(1st out of 122)</span></li>
             <li><span class="emoji">🏅</span> <b>Student of the Year</b>, Chongqing University 
                 <span style="color: #777;">(10 undergraduates selected annually)</span>
