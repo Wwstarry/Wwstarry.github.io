@@ -59,7 +59,7 @@
 
         .publication-entry {
             display: flex;
-            align-items: flex-start;
+            align-items: stretch;
             background: #fdfdfd;
             padding: 12px;
             margin: 15px 0;
@@ -70,9 +70,13 @@
 
         .publication-entry img {
             width: 200px;
-            height: 100px;
+            height: auto;
+            min-width: 200px;
             border-radius: 8px;
             margin-right: 16px;
+            display: block;
+            flex-shrink: 0;
+            align-self: stretch;
             object-fit: cover;
         }
 
@@ -253,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <p><span class="emoji">📌</span> My research is in the area of software engineering, in particular, <b>code generation</b>. I am deeply interested in how LLMs can reason and generate human-aligned programming logic. Code bridges abstract intentions with machine-executable behavior.</p>
         <p>Rather than solely focusing on incremental improvements or parameter tuning, I aspire to pursue <b>research that advances genuinely new paradigms</b> and challenges prevailing assumptions in both academia and industry. I believe that true scientific progress often requires taking risks, questioning conventions, and exploring directions that may initially seem uncertain or unconventional. My long-term goal is to contribute to work that not only advances performance but also <b>reshapes our fundamental understanding</b> of how intelligent systems perceive, reason, and interact with the world.</p>
         <p><em>I am always open for collaborations! Please feel free to reach out to me on <span style="color: #07C160; font-weight: bold;">WeChat: Wwstarryluck</span>.</em></p>
+        <p style="color: #b70505c0;"><b>I am actively seeking internship opportunities in industry (2026.4-2026.9). Please feel free to reach out if there might be a suitable opportunity.</b></p>
 
         <!-- ====== News Section: Only Typing Bar ====== -->
         <section id="news-typing" class="news-section">
@@ -264,8 +269,9 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </section>
 
-        <h2>Education</h2>
+<h2>Education</h2>
         <ul>
+            <li>[2026-2031] Ph.D. in Computer Science, <b>School of Computer Science</b>, Peking University.</li>
             <li>[2022–2026] B.Eng. in Software Engineering, <b>School of Big Data & Software Engineering</b>, Chongqing University.</li>
         </ul>
 
@@ -273,31 +279,52 @@ document.addEventListener('DOMContentLoaded', function () {
         <ul class="pub-list">
             <li>
                 <div class="publication-entry">
-                    <img src="assets/img/codecor.png" alt="CodeCoR">
+                        <img src="assets/img/RAL-Bench.png" alt="RAL-Bench">
                     <div>
-                        <b>🔥 CodeCoR: An LLM-Based Self-Reflective Multi-Agent Framework for Code Generation</b><br>
-                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†, Chao Liu</span><br>
-                        <i style="color: #b70505c0;">Introduces a novel self-reflective multi-agent framework. LLMs collaboratively reason and generate code.</i><br>
-                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2501.07811">Paper</a>]
+                        <b>Toward Functional and Non-Functional Evaluation of Application-Level Code Generation</b><br>
+                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Yakun Zhang, Qingyuan Liang, Yueheng Zhu, Chao Liu, Lu Zhang, Hongyu Zhang†</span><br>
+                        <i style="color: #b70505c0;">Measures both functional correctness and non-functional quality.</i><br>
+                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2602.03462">Paper</a>]
                     </div>
                 </div>
             </li>
 
             <li>
                 <div class="publication-entry">
-                    <img src="assets/img/modular_prompting.png" alt="Modular Prompting">
+                        <img src="assets/img/livecoder.png" alt="LiveCoder">
                     <div>
-                        <b>🔥 Modularization is Better: Effective Code Generation with Modular Prompting</b><br>
-                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†</span><br>
-                        <i style="color: #b70505c0;">Proposes modular prompting to improve code generation by decomposing tasks into structured modules.</i><br>
-                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2503.12483">Paper</a>]
+                        <b>Persistent Cross-Attempt State Optimization for Repository-Level Code Generation</b><br>
+                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Jiangshuai Wang, Qisheng Zhang, Yueheng Zhu, Linhao Wu, Zixiong Yang, Yakun Zhang, Lu Zhang, Hongyu Zhang†</span><br>
+                        <i style="color: #b70505c0;">Reuses cross-attempt knowledge to improve iterative generation.</i><br>
+                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2604.03632">Paper</a>]
                     </div>
                 </div>
             </li>
+
+            <li>
+                <div class="publication-entry">
+                        <img src="assets/img/envgraph.png" alt="EnvGraph">
+                    <div>
+                        <b>Toward Executable Repository-Level Code Generation via Environment Alignment</b><br>
+                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Junlei Shen, Linhao Wu, Yueheng Zhu, Zixiong Yang, Yakun Zhang, Lu Zhang, Hongyu Zhang†</span><br>
+                        <i style="color: #b70505c0;">Aligns dependencies and internal references in real execution environments.</i><br>
+                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2604.03622">Paper</a>]
+                    </div>
+                </div>
+            </li>
+
         </ul>
 
         <h2>Other Works</h2>
         <ul>
+            <li><b>CodeCoR:</b> An LLM-Based Self-Reflective Multi-Agent Framework for Code Generation<br>
+                <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†, Chao Liu.</span><br>
+                <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2501.07811">Paper</a>]
+            </li>
+            <li><b>Modularization is Better:</b> Effective Code Generation with Modular Prompting<br>
+                <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†.</span><br>
+                <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2503.12483">Paper</a>]
+            </li>
             <li><b>AdaCoder:</b> An Adaptive Planning and Multi-Agent Framework for Function-Level Code Generation<br>
                 <span style="color: #777;">Yueheng Zhu, Chao Liu†, Xuan He, Xiaoxue Ren, Zhongxin Liu, <u><b>Ruwei Pan</b></u>, Hongyu Zhang.</span><br>
                 <i><b>IEEE Transactions on Software Engineering (TSE)</b></i> &nbsp; [<a href="https://arxiv.org/abs/2504.04220">Paper</a>]
