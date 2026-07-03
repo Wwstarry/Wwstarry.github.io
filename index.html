@@ -1,355 +1,331 @@
-<!DOCTYPE html>
-<html>
-
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ruwei Pan's home page">
-    <title>Ruwei Pan's Homepage</title>
-    <link rel="icon" href="assets/img/profile_pic.jpg" type="image/jpg">
+    <link rel="icon" href="./assets/img/profile_pic.jpg" type="image/jpg">
     <link href="./profile.css" rel="stylesheet" type="text/css">
-    <style>
-        body {
-            font-family: Georgia, serif;
-            color: #111;
-            width: 850px;
-        }
-
-        .profile-pic {
-            width: 180px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.04);
-        }
-
-        .top-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .contact-box {
-            background: #f9f9f9;
-            border-radius: 8px;
-            padding: 10px 12px;
-            display: inline-block;
-            margin-top: 0.6em;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            font-size: 0.95em;
-        }
-
-        .contact-box img {
-            width: 16px;
-            vertical-align: middle;
-            margin-right: 6px;
-            opacity: 0.9;
-        }
-
-        .contact-box a {
-            margin-right: 16px;
-        }
-
-        .emoji {
-            font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, sans-serif;
-            font-size: 1.1em;
-        }
-
-        .publication-entry {
-            display: flex;
-            align-items: stretch;
-            background: #fdfdfd;
-            padding: 12px;
-            margin: 15px 0;
-            border-radius: 10px;
-            border: 1px solid #eee;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-        }
-
-        .publication-entry img {
-            width: 200px;
-            height: auto;
-            min-width: 200px;
-            border-radius: 8px;
-            margin-right: 16px;
-            display: block;
-            flex-shrink: 0;
-            align-self: stretch;
-            object-fit: cover;
-        }
-
-        .pub-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        h1,
-        h2 {
-            color: #263054;
-        }
-
-        h2 {
-            border-bottom: 1px solid #aaa;
-            padding-bottom: 5px;
-            margin-top: 40px;
-        }
-
-        /* ====== Typing News Bar ====== */
-        .news-section {
-    /* 调小和上一个部分的距离 */
-    margin-top: 1.2rem;
-    /* 几乎不留下面距，避免和 Education 之间太空 */
-    margin-bottom: -1.8rem;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .news-typing-wrapper {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.6rem 0.9rem;
-            border-radius: 999px;
-            background: rgba(79, 70, 229, 0.06);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            max-width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .news-label {
-            font-weight: 600;
-            margin-right: 0.5rem;
-            color: #4f46e5;
-        }
-
-        #news-typing-text {
-            font-weight: 500;
-            color: #333;
-        }
-
-        /* 光标闪烁效果 */
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.05em;
-            margin-left: 4px;
-            background: #333;
-            animation: blink-cursor 0.9s steps(1) infinite;
-        }
-
-        @keyframes blink-cursor {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* 移动端优化 */
-        @media (max-width: 768px) {
-            .news-typing-wrapper {
-                display: flex;
-                white-space: normal;
-                border-radius: 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Ruwei Pan's Homepage</title>
 </head>
-
-<script>
-// ====== Typing News Bar Logic ======
-document.addEventListener('DOMContentLoaded', function () {
-    const typingElement = document.getElementById('news-typing-text');
-    if (!typingElement) return;
-
-    // 这里写你想循环显示的 News 文本
-    const newsMessages = [
-        "MoT accepted to ISSTA 2026.",
-    ];
-
-    let msgIndex = 0;
-    let charIndex = 0;
-    let typingSpeed = 55;       // 打字速度 (ms)
-    let messagePause = 1500;    // 一条新闻打完后停顿时间
-    let deleting = false;
-
-    function typeLoop() {
-        const current = newsMessages[msgIndex];
-
-        if (!deleting) {
-            // Typing
-            typingElement.textContent = current.slice(0, charIndex + 1);
-            charIndex++;
-
-            if (charIndex === current.length) {
-                // 完成一条，停顿一下再删
-                setTimeout(() => { deleting = true; }, messagePause);
-            }
-        } else {
-            // Deleting
-            typingElement.textContent = current.slice(0, charIndex - 1);
-            charIndex--;
-
-            if (charIndex === 0) {
-                deleting = false;
-                msgIndex = (msgIndex + 1) % newsMessages.length;
-            }
-        }
-
-        const delay = deleting ? 35 : typingSpeed;
-        setTimeout(typeLoop, delay);
-    }
-
-    typeLoop();
-});
-</script>
-
 <body>
-    <div id="layout-content" style="margin: 25px; max-width: 800px;">
-        <div class="top-section">
-            <div style="max-width: 70%;">
-                <h1>Ruwei Pan</h1>
-                <h3><span class="emoji">🎓</span> Undergraduate Student</h3>
+    <nav class="site-nav">
+        <a class="active" href="#top">Ruwei Pan</a>
+        <a href="#news">News</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#awards">Awards</a>
+        <a href="#personality">Personality</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-                <p style="margin-bottom: 0.4em;">
-                    <img src="assets/img/school.png" alt="University"
-                        style="width:16px; vertical-align:middle; margin-right:5px;">
-                    <a href="https://www.cqu.edu.cn/" target="_blank">Chongqing University</a>
-                </p>
-                <p style="margin-top: 0;">
-                    <img src="assets/img/location.png" alt="Location"
-                        style="width:16px; vertical-align:middle; margin-right:5px;">
-                    Chongqing, China
-                </p>
+    <div class="page-shell" id="top">
+        <aside class="profile-sidebar">
+            <img class="profile-pic" src="./assets/img/profile_pic.jpg" alt="Ruwei Pan">
+            <h1 class="sidebar-name">Ruwei Pan</h1>
+            <p class="sidebar-role">Incoming Ph.D. @ Peking University.</p>
+            <div class="sidebar-links">
+                <span><i class="fas fa-location-dot"></i> Suzhou, China</span>
+                <span><i class="fas fa-building-columns"></i> Peking University</span>
+                <a href="mailto:panruwei666@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://scholar.google.com/citations?user=R7sRfe4AAAAJ&hl=en" target="_blank" rel="noreferrer"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+                <a href="https://github.com/Wwstarry" target="_blank" rel="noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                <span class="wechat-link"><i class="fab fa-weixin"></i> WeChat: Wwstarryluck</span>
+            </div>
+        </aside>
 
-                <div class="contact-box">
-                    <img src="assets/img/envelope.png" alt="Email">
-                    <a href="mailto:panruwei@stu.cqu.edu.cn">panruwei@stu.cqu.edu.cn</a>
+        <main class="main-content">
+            <h2>About Me</h2>
+            <p>
+                I am an incoming Ph.D. student at <b>Peking University</b>, advised by <b>Prof. <a href="https://scholar.google.com/citations?user=JUnz2VcAAAAJ&hl=en" target="_blank" rel="noreferrer">Lu Zhang</a></b>. I completed my undergraduate studies in Big Data and Software Engineering at <b>Chongqing University</b>, where I ranked <b>1st out of 122</b>. I have also been fortunate to begin my research journey under the supervision of <b>Prof. <a href="http://hongyujohn.github.io/" target="_blank" rel="noreferrer">Hongyu Zhang</a></b> in 2023.
+            </p>
+            <p>
+                My research focuses on software engineering, especially <b>code generation</b>. I am deeply interested in how LLMs reason about programming tasks, generate human-aligned logic, and produce executable behavior in realistic software environments. I am particularly drawn to questions about how intelligent systems can achieve deeper forms of reasoning, generalization, and alignment in the process of generating software.
+            </p>
+            <p>
+                Rather than only pursuing incremental improvements, I aspire to work on research that introduces genuinely new paradigms and challenges prevailing assumptions in both academia and industry. My long-term goal is to contribute work that reshapes our understanding of how intelligent systems perceive, reason, and interact with the world through software.
+            </p>
+            <p>
+                <b>Currently, I am actively seeking industry internship opportunities in Code LLMs.</b>
+            </p>
+            <p>
+                I am always open to collaborations and discussions. Please feel free to contact me by email or on <b class="wechat-highlight">WeChat: Wwstarryluck</b>.
+            </p>
 
-                    <img src="assets/img/google.png" alt="Google Scholar">
-                    <a href="https://scholar.google.com/citations?user=R7sRfe4AAAAJ&hl=en" target="_blank">Google Scholar</a>
-
-                    <img src="assets/img/github.png" alt="GitHub">
-                    <a href="https://github.com/Wwstarry" target="_blank">GitHub</a>
+            <div id="research-tree">
+                <style>
+                    #research-tree {
+                      margin: 1em 0 2em;
+                      overflow-x: auto;
+                      -webkit-overflow-scrolling: touch;
+                      touch-action: pan-x pan-y;
+                      -webkit-text-size-adjust: 100%;
+                    }
+                    #research-tree .tree-note {
+                      margin: 0 0 0.8em;
+                      font-size: 0.78rem;
+                      color: #8a8a8a;
+                    }
+                    #research-tree .htree { display: flex; align-items: flex-start; }
+                    #research-tree .htree ul { display: flex; flex-direction: column; padding-left: 1.5em; position: relative; list-style: none; margin: 0; }
+                    #research-tree .htree > ul { padding-left: 0; }
+                    #research-tree .htree li { display: flex; align-items: center; position: relative; padding: 0.35em 0; }
+                    #research-tree .htree ul ul > li::before {
+                      content: ''; position: absolute; left: -1em; top: 0; height: 100%;
+                      border-left: 1.5px solid #c5d5e0;
+                    }
+                    #research-tree .htree ul ul > li:first-child::before { top: 50%; height: 50%; }
+                    #research-tree .htree ul ul > li:last-child::before { height: 50%; }
+                    #research-tree .htree ul ul > li:only-child::before { display: none; }
+                    #research-tree .htree ul ul > li::after {
+                      content: ''; position: absolute; left: -1em; top: 50%;
+                      width: 1em; border-top: 1.5px solid #c5d5e0;
+                    }
+                    #research-tree .htree ul ul > li:only-child::after { display: none; }
+                    #research-tree .htree .nd {
+                      display: inline-flex; align-items: center; padding: 5px 14px; border-radius: 20px;
+                      font-size: 0.78rem; line-height: 1.4; white-space: nowrap; flex-shrink: 0;
+                    }
+                    #research-tree .htree .nd-rq {
+                      font-weight: 600; font-size: 0.78rem;
+                      padding: 5px 16px; border-radius: 20px;
+                      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+                      border: 1px solid #d8e4ed;
+                    }
+                    #research-tree .htree .nd-rq.rq1 { background: #e8f4fd; color: #2c5282; }
+                    #research-tree .htree .nd-rq.rq2 { background: #e0f2e9; color: #276749; }
+                    #research-tree .htree .nd-sub {
+                      background: #f8f9fb; border: 1px solid #e2e8f0; color: #555;
+                      font-weight: 600; font-size: 0.72rem; padding: 3px 10px; border-radius: 14px;
+                    }
+                    #research-tree .leaf-wrap { display: flex; align-items: center; }
+                    #research-tree .pills { display: flex; flex-wrap: wrap; gap: 4px; margin-left: 0.6em; max-width: 500px; }
+                    #research-tree .pill {
+                      display: inline-block; padding: 2px 9px; border-radius: 12px;
+                      font-size: 0.68rem; border: 1px solid #e8ecf1; background: #fff;
+                      color: #444; text-decoration: none; transition: all 0.15s; white-space: nowrap;
+                      touch-action: pan-x pan-y;
+                    }
+                    #research-tree .pill:hover { background: #f0f4ff; border-color: #a4c2f4; }
+                    #research-tree .pill .v { font-size: 0.57rem; color: #aaa; margin-left: 2px; }
+                    #research-tree .pill .i { margin-right: 3px; }
+                    @media (max-width: 768px) {
+                      #research-tree .htree ul { padding-left: 1.2em; }
+                      #research-tree .pills { max-width: 50vw; }
+                      #research-tree .htree .nd { font-size: 0.7rem; padding: 3px 10px; }
+                      #research-tree .pill { font-size: 0.72rem; padding: 4px 8px; }
+                      #research-tree .pill .v { font-size: 0.62rem; }
+                    }
+                </style>
+                <p class="tree-note">Only first-author papers are included in this map.</p>
+                <div class="htree">
+                    <ul>
+                        <li>
+                            <span class="nd nd-rq rq1">Q1: How to Correctly Produce Code?</span>
+                            <ul>
+                                <li><div class="leaf-wrap"><span class="nd nd-sub">Generation</span>
+                                    <div class="pills">
+                                        <a class="pill" href="https://arxiv.org/abs/2503.12483" target="_blank" rel="noreferrer"><span class="i">&#x1F9E9;</span>MoT <span class="v">ISSTA '26</span></a>
+                                        <a class="pill" href="https://arxiv.org/abs/2602.03462" target="_blank" rel="noreferrer"><span class="i">&#x1F4CF;</span>RAL-Bench <span class="v">Under Review</span></a>
+                                        <span class="pill"><span class="i">&#x1F5DC;&#xFE0F;</span>Rivet <span class="v">Under Review</span></span>
+                                    </div></div>
+                                </li>
+                                <li><div class="leaf-wrap"><span class="nd nd-sub">Repository-Level Reasoning</span>
+                                    <div class="pills">
+                                        <a class="pill" href="https://arxiv.org/abs/2604.03632" target="_blank" rel="noreferrer"><span class="i">&#x1F9F1;</span>LiveCoder <span class="v">Under Review</span></a>
+                                        <a class="pill" href="https://arxiv.org/abs/2604.03622" target="_blank" rel="noreferrer"><span class="i">&#x1F5FA;&#xFE0F;</span>EnvGraph <span class="v">Under Review</span></a>
+                                    </div></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="nd nd-rq rq2">Q2: How to Extend Code Generation Beyond Text-only Settings?</span>
+                            <ul>
+                                <li><div class="leaf-wrap"><span class="nd nd-sub">Multimodal Code Generation</span>
+                                    <div class="pills">
+                                        <span class="pill"><span class="i">&#x1F441;&#xFE0F;</span>VisStateCoder <span class="v">Under Review</span></span>
+                                    </div></div>
+                                </li>
+                                <li><div class="leaf-wrap"><span class="nd nd-sub">Agentic Collaboration</span>
+                                    <div class="pills">
+                                        <a class="pill" href="https://arxiv.org/abs/2501.07811" target="_blank" rel="noreferrer"><span class="i">&#x1F916;</span>CodeCoR <span class="v">Internetware '26</span></a>
+                                        <a class="pill" href="https://arxiv.org/abs/2503.12163" target="_blank" rel="noreferrer"><span class="i">&#x1F41E;</span>AgentDroid <span class="v">ASE '25 Demo</span></a>
+                                    </div></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div>
-                <img class="profile-pic" src="assets/img/profile_pic.jpg" alt="Profile Picture">
+
+            <h2 id="news">News</h2>
+            <div class="news-panel">
+                <ul class="news-list">
+                    <li><span style="font-weight: 700; color: #1f5fbf;">[2026.06]</span> One paper was accepted to <b>ISSTA 2026</b>.</li>
+                    <li><span style="font-weight: 700; color: #1f5fbf;">[2026.06]</span> One paper was accepted to <b>Internetware 2026</b>.</li>
+                    <li><span style="font-weight: 700; color: #1f5fbf;">[2025.11]</span> I was named <b>Student of the Year</b> at Chongqing University <span style="color: #777;">(10 undergraduates selected annually)</span>.</li>
+                    <li><span style="font-weight: 700; color: #1f5fbf;">[2025.09]</span> One paper was accepted to <b>ASE 2026</b>.</li>
+                </ul>
             </div>
-        </div>
 
-        <h2>About Me</h2>
-        <p>I am a <b> fourth-year </b> Undergraduate Student <b>(Ranking 1/122)</b> of Big Data and Software Engineering, Chongqing University, China. I have been very fortunate to begin my research journey under the supervision of <b>Prof. <a href="http://hongyujohn.github.io/" target="_blank">Hongyu Zhang</a></b> in 2023. I will soon begin my Ph.D. studies at <b>Peking University</b>, advised by <b>Prof. <a href="https://scholar.google.com/citations?user=JUnz2VcAAAAJ&hl=en" target="_blank">Lu Zhang</a></b>.</p>
-        <p><span class="emoji">📌</span> My research is in the area of software engineering, in particular, <b>code generation</b>. I am deeply interested in how LLMs can reason and generate human-aligned programming logic. Code bridges abstract intentions with machine-executable behavior.</p>
-        <p>Rather than solely focusing on incremental improvements or parameter tuning, I aspire to pursue <b>research that advances genuinely new paradigms</b> and challenges prevailing assumptions in both academia and industry. I believe that true scientific progress often requires taking risks, questioning conventions, and exploring directions that may initially seem uncertain or unconventional. My long-term goal is to contribute to work that not only advances performance but also <b>reshapes our fundamental understanding</b> of how intelligent systems perceive, reason, and interact with the world.</p>
-        <p><em>I am always open for collaborations! Please feel free to reach out to me on <span style="color: #07C160; font-weight: bold;">WeChat: Wwstarryluck</span>.</em></p>
-        <p style="color: #b70505c0;"><b>I am actively seeking industry internship opportunities, particularly in Code LLMs. Please feel free to reach out if there might be a suitable opportunity.</b></p>
+            <h2 id="education">Education</h2>
+            <ul>
+                <li>[2026-2031] Ph.D. in Computer Science, School of Computer Science, Peking University.</li>
+                <li>[2022-2026] B.Eng. in Software Engineering, School of Big Data and Software Engineering, Chongqing University.</li>
+            </ul>
 
-        <!-- ====== News Section: Only Typing Bar ====== -->
-        <section id="news-typing" class="news-section">
+            <h2 id="publications">Publications</h2>
 
-            <div class="news-typing-wrapper">
-                <span class="news-label">News:</span>
-                <span id="news-typing-text"></span>
-                <span class="typing-cursor"></span>
-            </div>
-        </section>
+            <details class="category" open>
+                <summary class="category-title"><i class="fas fa-scroll cat-icon"></i> Selected Publications &amp; Manuscripts <span class="category-count">3</span><i class="fas fa-chevron-right chevron"></i></summary>
+                <div class="category-body">
+                    <p class="research-note">
+                        Full paper list can be found on <a href="https://scholar.google.com/citations?user=R7sRfe4AAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>. * Equal contribution. &dagger; Corresponding author.
+                    </p>
 
-<h2>Education</h2>
-        <ul>
-            <li>[2026-2031] Ph.D. in Computer Science, <b>School of Computer Science</b>, Peking University.</li>
-            <li>[2022–2026] B.Eng. in Software Engineering, <b>School of Big Data & Software Engineering</b>, Chongqing University.</li>
-        </ul>
+                    <ul class="output-list">
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/RAL-Bench.png" alt="RAL-Bench teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>Toward Functional and Non-Functional Evaluation of Application-Level Code Generation</b></div>
+                                <div class="authors"><u><b>Ruwei Pan</b></u>, Yakun Zhang, Qingyuan Liang, Yueheng Zhu, Chao Liu, Lu Zhang, Hongyu Zhang<sup>&dagger;</sup>.</div>
+                                <div class="links">
+                                    <a href="https://arxiv.org/abs/2602.03462" target="_blank" rel="noreferrer"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <span class="pub-badge">Under Review</span>
+                                </div>
+                            </div>
+                        </li>
 
-        <h2>Selected Publications & Manuscripts</h2>
-        <ul class="pub-list">
-            <li>
-                <div class="publication-entry">
-                        <img src="assets/img/RAL-Bench.png" alt="RAL-Bench">
-                    <div>
-                        <b>Toward Functional and Non-Functional Evaluation of Application-Level Code Generation</b><br>
-                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Yakun Zhang, Qingyuan Liang, Yueheng Zhu, Chao Liu, Lu Zhang, Hongyu Zhang†</span><br>
-                        <i style="color: #b70505c0;">Measures both functional correctness and non-functional quality.</i><br>
-                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2602.03462">Paper</a>]
-                    </div>
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/livecoder.png" alt="LiveCoder teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>Persistent Cross-Attempt State Optimization for Repository-Level Code Generation</b></div>
+                                <div class="authors"><u><b>Ruwei Pan</b></u>, Jiangshuai Wang, Qisheng Zhang, Yueheng Zhu, Linhao Wu, Zixiong Yang, Yakun Zhang, Lu Zhang, Hongyu Zhang<sup>&dagger;</sup>.</div>
+                                <div class="links">
+                                    <a href="https://arxiv.org/abs/2604.03632" target="_blank" rel="noreferrer"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <span class="pub-badge">Under Review</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/envgraph.png" alt="EnvGraph teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>Toward Executable Repository-Level Code Generation via Environment Alignment</b></div>
+                                <div class="authors"><u><b>Ruwei Pan</b></u>, Junlei Shen, Linhao Wu, Yueheng Zhu, Zixiong Yang, Yakun Zhang, Lu Zhang, Hongyu Zhang<sup>&dagger;</sup>.</div>
+                                <div class="links">
+                                    <a href="https://arxiv.org/abs/2604.03622" target="_blank" rel="noreferrer"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <span class="pub-badge">Under Review</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </li>
+            </details>
 
-            <li>
-                <div class="publication-entry">
-                        <img src="assets/img/livecoder.png" alt="LiveCoder">
-                    <div>
-                        <b>Persistent Cross-Attempt State Optimization for Repository-Level Code Generation</b><br>
-                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Jiangshuai Wang, Qisheng Zhang, Yueheng Zhu, Linhao Wu, Zixiong Yang, Yakun Zhang, Lu Zhang, Hongyu Zhang†</span><br>
-                        <i style="color: #b70505c0;">Reuses cross-attempt knowledge to improve iterative generation.</i><br>
-                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2604.03632">Paper</a>]
-                    </div>
+            <details class="category" id="projects" open>
+                <summary class="category-title"><i class="fas fa-file-alt cat-icon"></i> Projects &amp; Other Works <span class="category-count">5</span><i class="fas fa-chevron-right chevron"></i></summary>
+                <div class="category-body">
+                    <ul class="output-list">
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/codecor.png" alt="CodeCoR teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>CodeCoR: An LLM-Based Self-Reflective Multi-Agent Framework for Code Generation</b></div>
+                                <div class="authors"><u><b>Ruwei Pan</b></u>, Hongyu Zhang<sup>&dagger;</sup>, Chao Liu.</div>
+                                <div class="links">
+                                    <a href="https://arxiv.org/abs/2501.07811" target="_blank" rel="noreferrer"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <span class="pub-badge">Internetware 2026</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/modular_prompting.png" alt="MoT teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>MoT: Effective Code Generation with Modular Prompting</b></div>
+                                <div class="authors"><u><b>Ruwei Pan</b></u>, Hongyu Zhang<sup>&dagger;</sup>.</div>
+                                <div class="links">
+                                    <a href="https://arxiv.org/abs/2503.12483" target="_blank" rel="noreferrer"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <span class="pub-badge">ISSTA 2026</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/adacoder.png" alt="AdaCoder teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>AdaCoder: An Adaptive Planning and Multi-Agent Framework for Function-Level Code Generation</b></div>
+                                <div class="authors">Yueheng Zhu, Chao Liu, Xuan He, Xiaoxue Ren, Zhongxin Liu, <u><b>Ruwei Pan</b></u>, Hongyu Zhang.</div>
+                                <div class="links">
+                                    <a href="https://arxiv.org/abs/2504.04220" target="_blank" rel="noreferrer"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <span class="pub-badge">IEEE Transactions on Software Engineering</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/agentdroid.png" alt="AgentDroid teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>AgentDroid: A Multi-Agent Framework for Detecting Fraudulent Android Applications</b></div>
+                                <div class="authors"><u><b>Ruwei Pan</b></u>, Hongyu Zhang<sup>&dagger;</sup>, Zhonghao Jiang, Ran Hou.</div>
+                                <div class="links">
+                                    <a href="https://arxiv.org/abs/2503.12163" target="_blank" rel="noreferrer"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <span class="pub-badge">ASE 2025 Demo</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="publication">
+                            <img class="pub-thumb" src="assets/img/awesome-ai4se.png" alt="Awesome-AI4SE teaser">
+                            <div class="pub-content">
+                                <div class="pub-title"><b>Welcome-to-Awesome-AI4SE</b></div>
+                                <div class="authors">A curated repository collecting recent high-quality AI for software engineering papers.</div>
+                                <div class="links">
+                                    <a href="https://github.com/Wwstarry/Welcome-to-Awesome-AI4SE" target="_blank" rel="noreferrer"><i class="fab fa-github"></i> Repository</a>
+                                    <span class="pub-badge">Community</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </li>
+            </details>
 
-            <li>
-                <div class="publication-entry">
-                        <img src="assets/img/envgraph.png" alt="EnvGraph">
-                    <div>
-                        <b>Toward Executable Repository-Level Code Generation via Environment Alignment</b><br>
-                        <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Junlei Shen, Linhao Wu, Yueheng Zhu, Zixiong Yang, Yakun Zhang, Lu Zhang, Hongyu Zhang†</span><br>
-                        <i style="color: #b70505c0;">Aligns dependencies and internal references in real execution environments.</i><br>
-                        <i><b>Under Review</b></i> &nbsp; [<a href="https://arxiv.org/abs/2604.03622">Paper</a>]
-                    </div>
-                </div>
-            </li>
+            <h2 id="awards">Awards &amp; Competitions</h2>
+            <ul>
+                <li><b>National Scholarship</b> (1st out of 122)</li>
+                <li><b>Student of the Year</b>, Chongqing University (10 undergraduates selected annually)</li>
+                <li><b>National First Prize</b>, China Software Cup (Top 0.3%, Aug 2024)</li>
+                <li><b>National First Prize</b>, Mathematical Contest in Modeling (Top 0.45%, Nov 2024)</li>
+                <li><b>National Second Prize</b>, Software Innovation Contest (15th nationwide, May 2025)</li>
+                <li><b>National Second Prize</b>, China College Students' Service Outsourcing Innovation and Entrepreneurship Competition (Apr 2024)</li>
+                <li><b>Excellent Project</b>, National Undergraduate Innovation Training (Nov 2024)</li>
+            </ul>
 
-        </ul>
+            <h2 id="personality">Personality</h2>
+            <p>
+                Beyond research, I enjoy playing games and reading novels. My MBTI is <b>INFJ</b>. I especially enjoy listening to rap and R&amp;B, and some of my favorite singers are Renzhong Yan, David Tao, JJ Lin, and Leehom Wang. I also enjoy playing table tennis. I enjoy solitude and often like spending time alone, but I am also happy to meet new people and make new friends.
+            </p>
 
-        <h2>Other Works</h2>
-        <ul>
-            <li><b>CodeCoR:</b> An LLM-Based Self-Reflective Multi-Agent Framework for Code Generation<br>
-                <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†, Chao Liu.</span><br>
-                <i><b>Internetware 2026 Research Track</b></i> &nbsp; [<a href="https://arxiv.org/abs/2501.07811">Paper</a>]
-            </li>
-            <li><b>MoT:</b> Effective Code Generation with Modular Prompting<br>
-                <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†.</span><br>
-                <i><b>ISSTA 2026 Research Track</b></i> &nbsp; [<a href="https://arxiv.org/abs/2503.12483">Paper</a>]
-            </li>
-            <li><b>AdaCoder:</b> An Adaptive Planning and Multi-Agent Framework for Function-Level Code Generation<br>
-                <span style="color: #777;">Yueheng Zhu, Chao Liu†, Xuan He, Xiaoxue Ren, Zhongxin Liu, <u><b>Ruwei Pan</b></u>, Hongyu Zhang.</span><br>
-                <i><b>IEEE Transactions on Software Engineering (TSE)</b></i> &nbsp; [<a href="https://arxiv.org/abs/2504.04220">Paper</a>]
-            </li>
-            <li><b>AgentDroid:</b> A Multi-Agent Framework for Detecting Fraudulent Android Applications<br>
-                <span style="color: #777;"><u><b>Ruwei Pan</b></u>, Hongyu Zhang†, Zhonghao Jiang, Ran Hou.</span><br>
-                <i><b>ASE 2025 Demo Track</b></i> &nbsp; [<a href="https://arxiv.org/abs/2503.12163">Paper</a>]
-            </li>
-        </ul>
-
-        <h2>Awards & Competitions</h2>
-        <ul style="list-style-type: none; padding-left: 0%;">
-            <li><span class="emoji">🎓</span> <b>National Scholarship</b> <span style="color: #777;">(1st out of 122)</span></li>
-            <li><span class="emoji">🏅</span> <b>Student of the Year</b>, Chongqing University 
-                <span style="color: #777;">(10 undergraduates selected annually)</span>
-            </li>
-            <li><span class="emoji">🏆</span> <b>National First Prize</b>, China Software Cup <span style="color: #777;">(Top 0.3%, Aug 2024)</span></li>
-            <li><span class="emoji">🏆</span> <b>National First Prize</b>, Mathematical Contest in Modeling <span style="color: #777;">(Top 0.45%, Nov 2024)</span></li>
-            <li><span class="emoji">🥈</span> <b>National Second Prize</b>, Software Innovation Contest <span style="color: #777;">(15th nationwide, May 2025)</span></li>
-            <li><span class="emoji">🥈</span> <b>National Second Prize</b>, China College Students’ Service Outsourcing Innovation and Entrepreneurship Competition <span style="color: #777;">(Apr 2024)</span></li>
-            <li><span class="emoji">🌟</span> <b>Excellent Project</b>, National Undergraduate Innovation Training <span style="color: #777;">(Nov 2024)</span></li>
-        </ul>
-
-        <h2>Community Contribution</h2>
-        <p>I maintain a curated <b>AI4SE Paper Repository</b> collecting recent high-quality research in software engineering. It aims to help researchers and practitioners stay updated with cutting-edge trends.</p>
-        <p><span class="emoji">🔗</span> <a href="https://github.com/Wwstarry/Welcome-to-Awesome-AI4SE" target="_blank">Welcome-to-Awesome-AI4SE</a> ⭐90+ </p>
+            <h2 id="contact">Contact Me</h2>
+            <p>
+                I value conversations that sharpen ideas, challenge assumptions, and open up new ways of thinking. If you have thoughts on my work, a different perspective on a problem, or an idea you would like to discuss, I would be glad to hear from you. Throughout my journey, I have benefited greatly from the generosity of mentors, collaborators, and friends, and for the same reason I am always happy to connect, exchange ideas, or offer help when I can.
+            </p>
+            <p>
+                If you would like to talk about research, collaboration, or anything related to code generation and software engineering, the best way to reach me is by email: <a href="mailto:panruwei666@gmail.com">panruwei666@gmail.com</a>.
+            </p>
+        </main>
     </div>
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
+
