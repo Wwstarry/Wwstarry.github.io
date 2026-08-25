@@ -1,0 +1,35 @@
+{
+    "permissions":  {
+                        "allow":  [
+                                      "Skill(claude-api)",
+                                      "PowerShell(New-Item *)",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\harness\\\\run_task.py\" --task todo_cli --source reference_solution --include-hidden --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\todo_cli_reference_results.json\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\harness\\\\run_task.py\" --task todo_cli --source reference_solution --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\todo_cli_reference_visible_results.json\")",
+                                      "PowerShell(gh *)",
+                                      "PowerShell($repos = @\\(\u0027pallets/click\u0027,\u0027tiangolo/typer\u0027,\u0027pypa/pipx\u0027,\u0027PyCQA/isort\u0027,\u0027Delgan/loguru\u0027,\u0027encode/httpx\u0027,\u0027encode/starlette\u0027,\u0027pallets/flask\u0027,\u0027psf/black\u0027,\u0027pytest-dev/pytest\u0027\\); foreach \\($repo in $repos\\) { $url = \"https://api.github.com/repos/$repo\"; try { $r = Invoke-RestMethod -Uri $url -Headers @{ \u0027User-Agent\u0027 = \u0027swe-lifecycle-benchmark\u0027 }; \"$repo`t$\\($r.stargazers_count\\)`t$\\($r.language\\)`t$\\($r.default_branch\\)\" } catch { \"FAILED $repo $\\($_.Exception.Message\\)\" } })",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\scripts\\\\collect_github_trajectories.py\" --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\github_trajectories\\\\raw_candidates.json\" --per-repo 5)",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\scripts\\\\build_github_project_cards.py\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\scripts\\\\collect_git_history_trajectories.py\" --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\github_trajectories\\\\git_history_candidates.json\" --cache-dir \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\github_trajectories\\\\repo_cache\" --depth 300 --per-repo 5)",
+                                      "PowerShell($data = Get-Content \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\github_trajectories\\\\git_history_candidates.json\" -Raw | ConvertFrom-Json; foreach \\($item in $data\\) { \"$\\($item.project_id\\)`t$\\($item.repo\\)`tcandidates=$\\($item.candidates.Count\\)`terror=$\\($item.error\\)\" })",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\scripts\\\\materialize_github_tasks.py\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\harness\\\\materialize_github_task.py\" --task click_github --workspace \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\click_github_reference\" --apply-reference --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\click_github_materialize.json\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\harness\\\\materialize_github_task.py\" --task loguru_github --workspace \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\loguru_github_reference\" --apply-reference --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\loguru_github_materialize.json\"; python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\harness\\\\materialize_github_task.py\" --task typer_github --workspace \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\typer_github_reference\" --apply-reference --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\typer_github_materialize.json\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\scripts\\\\validate_github_tasks.py\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\harness\\\\run_github_benchmark.py\" --baseline noop --baseline reference_patch --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\agent_eval_results.json\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\harness\\\\run_github_benchmark.py\" --task click_github --task flask_github --task isort_github --baseline noop --baseline reference_patch --run-tests --test-timeout 180 --output \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\.runs\\\\agent_eval_smoke_with_tests.json\")",
+                                      "PowerShell(python \"D:\\\\ICLR_2027\\\\swe-lifecycle-agent\\\\benchmark\\\\scripts\\\\summarize_baselines.py\")"
+                                  ]
+                    },
+    "env":  {
+                "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME":  "claude-haiku-4-5",
+                "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME":  "claude-opus-4-8",
+                "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME":  "claude-sonnet-4-6",
+                "ANTHROPIC_API_KEY":  "PROXY_MANAGED",
+                "ANTHROPIC_BASE_URL":  "http://127.0.0.1:15721",
+                "ANTHROPIC_DEFAULT_HAIKU_MODEL":  "claude-haiku-4-5",
+                "ANTHROPIC_DEFAULT_OPUS_MODEL":  "claude-opus-4-8[1M]",
+                "ANTHROPIC_DEFAULT_SONNET_MODEL":  "claude-sonnet-4-6[1M]",
+                "ANTHROPIC_DEFAULT_FABLE_MODEL":  "claude-fable-5",
+                "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME":  "claude-fable-5"
+            }
+}

@@ -44,8 +44,9 @@ a:hover {
     height: 56px;
     display: flex;
     align-items: center;
-    gap: 56px;
+    gap: clamp(22px, 3vw, 56px);
     padding: 0 24px;
+    overflow-x: auto;
     background: rgba(255, 255, 255, 0.96);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(8px);
@@ -58,6 +59,7 @@ a:hover {
     font-weight: 700;
     text-decoration: none;
     padding: 14px 0 13px;
+    white-space: nowrap;
 }
 
 .site-nav a.active {
